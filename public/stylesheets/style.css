@@ -1,0 +1,40 @@
+@font-face {
+    font-family: fantom;
+    src: url("/fonts/fantom-fusion.otf");
+}
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+nav {
+    font-family: fantom;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgb(101, 101, 101);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+
+    background: rgb(184, 255, 184);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(27, 148, 0);
+}

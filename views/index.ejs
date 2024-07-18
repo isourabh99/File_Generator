@@ -1,0 +1,68 @@
+<%-include("partials/header")%>
+
+<nav class="h-16 text-zinc-400 w-screen flex items-center flex justify-between fixed top-0 px-10 ">
+  <a href="/" class="text-3xl font-thin">Home</a>
+  <p class="text-2xl font-thin "><%=title%></p>
+</nav>
+
+<div id="main1" class="min-h-screen w-screen flex text-zinc-400">
+  <div id="left" class="w-1/2 h-screen  ">
+    <img src="/images/Group 1.png" alt="">
+  </div>
+
+  <div id="right" class=" w-1/2 h-screen flex items-center justify-center mt-20">
+    <form action="/create" method="post" class="h-4/5 w-full flex justify-center items-center flex-col text-2xl">
+      <h1 class="text-5xl text-green-300">Create File</h1>
+      <br>
+      Filename
+      <br>
+      <br>
+      <input type="text" placeholder="Enter (filename.ext)" name="fileName" 
+        class="px-2 py-1 bg-zinc-800 text-zinc-300 rounded outline-none w-96">
+      <br>
+      Content
+      <br>
+      <br>
+      <textarea name="fileContent" id="" placeholder="Start writing here..."
+        class="px-3 py-2  text-zinc-300 rounded outline-none min-h-96 w-4/5 bg-zinc-800 placeholder-zinc-400 resize-none"></textarea>
+      <br>
+      <button type="submit" class="px-6 py-1 bg-green-300 rounded-md text-black hover:bg-green-400">Create</button>
+    </form>
+  </div>
+</div>
+
+<div id="main2" class="h-screen w-screen px-10 py-10 ">
+  <h1 class="text-green-100 text-6xl mb-20">Total files <span class="text-green-300"><%=dirLength%></span></h1>
+
+ <div id="box2" class="flex justify-between h-full w-full">
+   <div id="filesContainer" class="flex flex-wrap gap-7 h-full w-1/2 overflow-y-scroll scroll-smooth">
+     <%files.forEach((f)=>{%>
+     <div id="file" class="h-[16rem] w-[10rem] bg-zinc-800 rounded-xl text-center relative ">
+       <a href="/<%=f%>" class="">
+         <i class="ri-file-fill text-green-300 text-[9vw] hover:text-green-400" title="Click to read the file"></i>
+         <p class="text-black  text-xs absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] break-all"
+           title="Click to read the file"><%=f%></p>
+       </a>
+       <a href="/delete/<%=f%>"><i class="ri-delete-bin-line text-red-900 text-2xl "></i></a>
+     </div>
+     <% })%>
+   </div>
+
+   <div id="readData" class="h-full w-1/2 px-10  ">
+    <h1 class="text-green-300 mb-5 text-3xl"><%=filename%></h1>
+     <%if(readData){%> 
+      <form action="/update/<%=filename%>"  method="post">
+    <textarea name="read" id="" class="w-full h-[90vh] resize-none p-10 text-xl bg-zinc-800 text-white"><%=readData%></textarea>
+    <button type="submit" class="px-6 py-1 bg-green-300 rounded-md text-black hover:bg-green-400 mb-10">Update</button>
+  </form>
+    <%}else{%>
+      <p class="text-2xl text-green-100 text-center mt-[20vh]">The selected file has nothing to show</p>
+      <%}%>
+   </div>
+ </div>
+
+</div>
+
+
+
+<%-include("partials/footer")%>
